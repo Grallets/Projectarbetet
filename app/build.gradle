@@ -36,6 +36,13 @@ android {
 }
 
 dependencies {
+// OkHttp for making API calls
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+// Coroutine support
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    implementation 'com.google.code.gson:gson:2.8.9'
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
