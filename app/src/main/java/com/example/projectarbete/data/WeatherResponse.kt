@@ -1,23 +1,14 @@
 package com.example.projectarbete.data
 
-import com.google.gson.annotations.SerializedName
-
 data class WeatherResponse(
-    @SerializedName("weather") val weather: List<Weather>,
-    @SerializedName("main") val main: Main,
-    @SerializedName("name") val cityName: String
-)
-
-data class Weather(
-    @SerializedName("id") val id: Int,
-    @SerializedName("main") val main: String,
-    @SerializedName("description") val description: String,
-    @SerializedName("icon") val icon: String
-)
-
-data class Main(
-    @SerializedName("temp") val temp: Double,
-    @SerializedName("temp_min") val tempMin: Double,
-    @SerializedName("temp_max") val tempMax: Double,
-    @SerializedName("humidity") val humidity: Int
+    val cloud_pct: Int,
+    val temp: Int,
+    val feels_like: Int,
+    val humidity: Int,
+    val min_temp: Int,
+    val max_temp: Int,
+    val wind_speed: Double,
+    val wind_degrees: Int,
+    val sunrise: Long,
+    val sunset: Long
 )

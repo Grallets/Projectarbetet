@@ -1,5 +1,5 @@
 package com.example.projectarbete
-import com.example.projectarbete.WeatherData
+
 
 
 

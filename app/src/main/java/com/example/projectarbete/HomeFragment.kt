@@ -1,3 +1,5 @@
+package com.example.projectarbete
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,11 +32,16 @@ class HomeFragment : Fragment() {
 
         binding.buttonUpdateWeather.setOnClickListener {
             val cityName = binding.editTextCity.text.toString()
-            viewModel.updateWeatherForCity(cityName)
+            viewModel.updateWeatherData(cityName)
         }
 
         viewModel.weatherData.observe(viewLifecycleOwner, Observer { weather ->
-            binding.textWeather.text = weather.toString()
+            if (weather != null) {
+                binding.textTemperature.text = "Temperature: ${weather.temp}"
+                binding.textHumidity.text = "Humidity: ${weather.humidity}"
+            } else {
+                // Show an error message or a default message if weather data is not available
+            }
         })
     }
 
@@ -43,3 +50,4 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 }
+
