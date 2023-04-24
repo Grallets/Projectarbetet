@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.projectarbete.WeatherViewModel
 import com.example.projectarbete.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -30,19 +30,35 @@ class HomeFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
 
+        val initialCity = "Stockholm"
+        viewModel.updateWeather(initialCity)
+
         binding.buttonUpdateWeather.setOnClickListener {
             val cityName = binding.editTextCity.text.toString()
-            viewModel.updateWeatherData(cityName)
+            if (cityName.isNotEmpty()) {
+                binding.textCityName.text = cityName
+                viewModel.updateWeather(cityName)
+            } else {
+                Toast.makeText(requireContext(), "Please enter a city name", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
         viewModel.weatherData.observe(viewLifecycleOwner, Observer { weather ->
             if (weather != null) {
-                binding.textTemperature.text = "Temperature: ${weather.temp}"
-                binding.textHumidity.text = "Humidity: ${weather.humidity}"
+                binding.textCityName.text = weather.name
+                val tempInt = weather.main.temp.toInt()
+                binding.textTemperature.text = "Temperature: $tempInt°C"
+                binding.textHumidity.text = "Humidity: ${weather.main.humidity}%"
+                binding.textFeelsLike.text = "Feels Like: ${weather.main.feelsLike.toInt()}°C"
+                binding.textTempMin.text = "Min Temperature: ${weather.main.tempMin.toInt()}°C"
+                binding.textTempMax.text = "Max Temperature: ${weather.main.tempMax.toInt()}°C"
+                binding.textPressure.text = "Pressure: ${weather.main.pressure} hPa"
             } else {
                 // Show an error message or a default message if weather data is not available
             }
         })
+
     }
 
     override fun onDestroyView() {
