@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsFragment">
+    android:gravity="center"
+    tools:context=".SettingsFragment"
+    android:background="@drawable/gradient_bg"
+    android:layout_gravity="center"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:id="@+id/edit_text_city"
+        android:layout_width="360dp"
+        android:layout_height="72dp"
+        android:hint="Enter city name"
+        android:inputType="text"
+        android:gravity="center"
+        />
 
-</FrameLayout>
+
+    <Button
+        android:id="@+id/button_update_weather"
+        android:layout_width="185dp"
+        android:layout_height="68dp"
+        android:text="Update Weather"
+
+        />
+
+
+</LinearLayout>
